@@ -1,5 +1,5 @@
 import Reactotron, {networking} from 'reactotron-react-native';
-import {reactotronRedux} from 'reactotron-redux';
+import { reactotronRedux } from 'reactotron-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 console.disableYellowBox = true;
