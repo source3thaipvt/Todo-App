@@ -24,10 +24,10 @@ const filtersSlice = createSlice({
         prioritiesFilterChanged: (state, action) =>{
             state.priorities = action.payload
         },
-        resetTodo: () => initialState
+        resetFilters: () => initialState
     },
 });
 
-export const { resetTodo, searchFilterChanged, statusFilterChanged, prioritiesFilterChanged } = filtersSlice.actions;
+export const { resetFilters, searchFilterChanged, statusFilterChanged, prioritiesFilterChanged } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

@@ -4,6 +4,7 @@ import React from 'react';
 import TextViewBase from '../../../../components/TextViewBase';
 import {selectFilterTodos, useAppDispatch, useAppSelector} from '../../../../redux/hooks';
 import { TTodo, updateTodo } from '../../../../redux/todos/todosSlice';
+import { fetchTodos, fetchUpdateTodo } from '../../../../redux/todos/action';
 export const switchColor = (type: string) => {
   switch (type) {
     case 'High':
@@ -48,8 +49,14 @@ const ItemTodo = (props: {item: any; itemChangedTodo?: (item: any) => void}) => 
 const ViewListTodo = () => {
   const todos = useAppSelector(selectFilterTodos);
   const dispatch = useAppDispatch()
-  const itemChangedTodo = (todo:TTodo) =>{
-    dispatch(updateTodo(todo))
+  const itemChangedTodo = async (todo:TTodo) =>{
+    try {
+      const response = await dispatch(fetchUpdateTodo(todo))
+      const response2 = await dispatch(fetchTodos())
+      console.log("handle call update todo ", response, response2)
+    } catch (error) {
+      console.log("error handle call update todo ", error)
+    }
   }
   const renderItem = ({item}: {item: any}) => {
     return <ItemTodo item={item} itemChangedTodo={itemChangedTodo}/>;

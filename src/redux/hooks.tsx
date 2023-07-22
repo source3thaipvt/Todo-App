@@ -8,7 +8,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const selectFilterTodos = (state: RootState) => {
   const {todos, filters} = state;
-  return todos.filter(todo => {
+  return todos.todos.filter(todo => {
     if (filters.status == 'All') {
       return filters.priorities.length
         ? todo.name.includes(filters.search) &&
