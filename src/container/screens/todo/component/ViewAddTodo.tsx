@@ -9,7 +9,7 @@ import TouchButton from '../../../../components/TouchButton';
 import TextViewBase from '../../../../components/TextViewBase';
 import {switchColor} from './ViewListTodo';
 import {useAppDispatch} from '../../../../redux/hooks';
-import {fetchAddTodo, fetchTodos} from '../../../../redux/todos/action';
+import {fetchAddTodo} from '../../../../redux/todos/action';
 
 const initTodo: TTodo = {
   id: uuid.v4(),
@@ -38,10 +38,9 @@ const ViewAddTodo = () => {
     if (todo.name.trim().length > 0) {
       try {
         const response = await dispatch(fetchAddTodo(todo));
-        const response2 = await dispatch(fetchTodos());
         setTodo({...initTodo, id: uuid.v4()});
         setValue('Medium');
-        console.log('handle call add todo ', response, response2);
+        console.log('handle call add todo ', response);
       } catch (error) {
         console.log('error handle call add todo ', error);
       }

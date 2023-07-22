@@ -67,6 +67,7 @@ const authSlice = createSlice({
       state.loading = false,
       state.status = 'finished'
       state.currentRequestId = undefined
+      state.todos.push(payload.todo);
     })
     .addCase(fetchAddTodo.rejected, (state, {payload, meta})=>{
       state.loading = false,
@@ -83,6 +84,10 @@ const authSlice = createSlice({
       state.loading = false,
       state.status = 'finished'
       state.currentRequestId = undefined
+      let indexTodo = state.todos.findIndex(todo => todo.id == payload.todo.id);
+      if (indexTodo !== -1) {
+        state.todos[indexTodo] = payload.todo;
+      }
     })
     .addCase(fetchUpdateTodo.rejected, (state, {payload, meta})=>{
       state.loading = false,
